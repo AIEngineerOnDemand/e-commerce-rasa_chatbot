@@ -23,6 +23,14 @@ Follow these steps to set up and run the project:
 4. Train the chatbot model with `rasa train`.
 5. Start the chatbot with `rasa run`.
 
+## Docker Image
+
+A Docker image of the application has been created and is available on Docker Hub.
+
+You can pull the Docker image using the following command:
+
+```bash
+docker pull aiengineerondemand/rasa-bots:rasa-demo
 
 ## Usage
 
