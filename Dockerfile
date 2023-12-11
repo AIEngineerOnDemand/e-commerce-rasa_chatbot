@@ -20,11 +20,15 @@ ADD . /app
 # Switch to root user
 USER root
 
+# Train the Rasa NLU model
+RUN rasa train nlu
+
 # Change permissions of the config.yml file
 RUN chmod 666 config.yml
 
 # Use an unprivileged user
 USER 1001
+
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
 
