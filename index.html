@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Widget</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui@0.3.2/build/botui.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui@0.3.2/build/botui-theme-default.css" />
+</head>
+<body>
+    <div id="chat-app"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/botui@0.3.2/build/botui.min.js"></script>
+
+    <script>
+        var botui = new BotUI('chat-app');
+
+        botui.message.add({
+            content: 'Hello! How can I assist you today?'
+        });
+
+        botui.action.text({
+            action: {
+                placeholder: 'Say something...'
+            }
+        }).then(function (res) {
+            sendMessage(res.value);
+        });
+
+        function sendMessage(message) {
+            fetch('https://your-rasa-server-url/webhooks/rest/webhook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "sender": "user",
+                    "message": message
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                botui.message.add({
+                    content: data[0].text
+                });
+
+                botui.action.text({
+                    action: {
+                        placeholder: 'Say something...'
+                    }
+                }).then(function (res) {
+                    sendMessage(res.value);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
