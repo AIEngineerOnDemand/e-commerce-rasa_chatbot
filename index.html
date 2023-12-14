@@ -3,22 +3,15 @@
 <head>
     <title>Chat with Rasa Bot</title>
     <style>
-        #chatbox {
-            width: 300px;
-            height: 400px;
-            border: 1px solid black;
-            padding: 10px;
-            overflow: auto;
-        }
-        #userInput {
-            width: 300px;
-        }
+        /* ...existing CSS... */
     </style>
 </head>
 <body>
     <div id="chatbox"></div>
-    <input id="userInput" type="text" />
-    <button onclick="sendMessage()">Send</button>
+    <div id="inputArea">
+        <input id="userInput" type="text" />
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
     <script>
         const chatbox = document.getElementById('chatbox');
@@ -29,7 +22,7 @@
             userInput.value = '';
 
             // Display user's message
-            chatbox.innerHTML += 'You: ' + message + '<br>';
+            chatbox.innerHTML += '<div class="message">You: ' + message + '</div>';
 
             // Send user's message to Rasa server
             fetch('http://localhost:5005/webhooks/rest/webhook', {
@@ -45,9 +38,15 @@
                 .then(response => response.json())
                 .then(data => {
                     // Display bot's message
-                    chatbox.innerHTML += 'Bot: ' + data[0].text + '<br>';
+                    data.forEach((message) => {
+                        let botMessage = 'Bot: ' + message.text;
+                        if (message.image) {
+                            botMessage += '<br><img src="' + message.image + '">';
+                        }
+                        chatbox.innerHTML += '<div class="message">' + botMessage + '</div>';
+                    });
+                    // Scroll to the bottom of the chatbox
+                    chatbox.scrollTop = chatbox.scrollHeight;
                 });
         }
     </script>
-</body>
-</html>
