@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/botui@0.3.2/build/botui.min.js"></script>
 
     <script>
+    window.onload = function() {
         var botui = new BotUI('chat-app');
 
         botui.message.add({
@@ -27,6 +28,7 @@
                 content: 'You said: ' + res.value
             });
         });
+    };
     </script>
 </body>
 </html>
