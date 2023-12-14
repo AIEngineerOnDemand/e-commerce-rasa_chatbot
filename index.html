@@ -23,35 +23,10 @@
                 placeholder: 'Say something...'
             }
         }).then(function (res) {
-            sendMessage(res.value);
-        });
-
-        function sendMessage(message) {
-            fetch('https://your-rasa-server-url/webhooks/rest/webhook', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    "sender": "user",
-                    "message": message
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                botui.message.add({
-                    content: data[0].text
-                });
-
-                botui.action.text({
-                    action: {
-                        placeholder: 'Say something...'
-                    }
-                }).then(function (res) {
-                    sendMessage(res.value);
-                });
+            botui.message.add({
+                content: 'You said: ' + res.value
             });
-        }
+        });
     </script>
 </body>
 </html>
