@@ -30,16 +30,6 @@ The chatbot is designed to assist users in navigating an e-commerce platform. It
 ## File Structure
 
 - `actions.py`: This file contains custom actions that the Rasa chatbot can perform. These actions can interact with the user, call APIs, or modify the state of the conversation.
-## Project Overview
-
-The chatbot is designed to assist users in navigating an e-commerce platform. It can perform tasks such as:
-- Answering queries about products
-- Providing product recommendations
-- Guiding users through the purchasing process
-
-## File Structure
-
-- `actions.py`: This file contains custom actions that the Rasa chatbot can perform. These actions can interact with the user, call APIs, or modify the state of the conversation.
 
 ## Installation
 
@@ -49,10 +39,4 @@ Follow these steps to set up and run the project:
 2. Install the dependencies. This project uses Poetry for dependency management. If you have Poetry installed, you can install the dependencies with `poetry install`.
 3. Ensure Rasa is installed. If not, you can install it with `pip install rasa`.
 4. Train the chatbot model with `rasa train`.
-5. Start the chatbot with `rasa run`.
-
-## Docker Image
-
-A Docker image of the application has been created and is available on Docker Hub.
-
-You can pull the Docker image using the following command:
+5. Start the chatbot with `python rasa_host.py`.
