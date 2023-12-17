@@ -7,7 +7,7 @@ This repository hosts the code for an e-commerce chatbot built with Rasa, a lead
 We have updated our execution process. Now, we run the code through `rasa_host.py`. To execute the code, use the following command:
 
 ```bash
-python rasa_host.py
+python start_rasa.py
 ```
 
 ## Data Tracking
@@ -39,4 +39,4 @@ Follow these steps to set up and run the project:
 2. Install the dependencies. This project uses Poetry for dependency management. If you have Poetry installed, you can install the dependencies with `poetry install`.
 3. Ensure Rasa is installed. If not, you can install it with `pip install rasa`.
 4. Train the chatbot model with `rasa train`.
-5. Start the chatbot with `python rasa_host.py`.
+5. Start the chatbot with `python start_rasa.py`.
