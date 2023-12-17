@@ -9,5 +9,5 @@ dotenv_path = os.path.join(parent_dir, '.env')
 
 load_dotenv(dotenv_path)
 
-# Start Rasa server with enable-api, debug, and cors arguments
-subprocess.call(['rasa', 'run', '--enable-api', '--debug', '--cors', '*'])
+# Start Rasa server
+subprocess.call(['rasa', 'run', '--enable-api', '--debug'])
